@@ -165,6 +165,17 @@ var rentalModifications = [{
   'pickupDate': '2015-12-05'
 }];
 
+function Ex1(){
+  rentals.forEach(function(entry){
+    const rentTime = (new Date(entry.returnDate.replace(/-/g,'/')) - new Date(entry.pickupDate.replace(/-/g,'/')))/(1000 * 60 * 60 * 24) + 1;
+    cars.forEach(function(input){
+      if (input.id == entry.carId){
+        entry.price = input.pricePerDay * rentTime + input.pricePerKm * entry.distance;
+      }
+    });
+  });
+}
+
 console.log(cars);
 console.log(rentals);
 console.log(actors);
