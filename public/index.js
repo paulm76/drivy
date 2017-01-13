@@ -263,7 +263,20 @@ function Ex4(){
   });
 }
 
-
+function Ex5(){
+  Ex4();
+  rentals.forEach(function(entry){
+    actors.forEach(function(input){
+      if (entry.id == input.rentalId){
+        input.payment[0].amount = entry.price;
+        input.payment[1].amount = entry.price - entry.commission.insurance - entry.commission.assistance - entry.commission.drivy;
+        input.payment[2].amount = entry.commission.insurance;
+        input.payment[3].amount = entry.commission.assistance;
+        input.payment[4].amount = entry.commission.drivy;    
+      }
+    });
+  });
+}
 
 console.log(cars);
 console.log(rentals);
