@@ -192,10 +192,42 @@ function Ex2(){
         else if(rentTime > 1){
           rentPrice += 9 * input.pricePerDay * rentTime / 10;
         }
+        else{
+          rentPrice += input.pricePerDay * rentTime;
+        }
         entry.price = rentPrice;
-        console.log(input.pricePerKm + " *  " + entry.distance + " + " + input.pricePerDay + " * " + rentTime);
+        //console.log(input.pricePerKm + " *  " + entry.distance + " + " + input.pricePerDay + " * " + rentTime);
       }
     });
+  });
+}
+
+function Ex3(){
+  rentals.forEach(function(entry){
+    var rentPrice = 0;
+    const rentTime = (new Date(entry.returnDate.replace(/-/g,'/')) - new Date(entry.pickupDate.replace(/-/g,'/')))/(1000 * 60 * 60 * 24) + 1;
+    cars.forEach(function(input){
+      if (input.id == entry.carId){
+        rentPrice = input.pricePerKm * entry.distance;
+        if(rentTime > 10){
+          rentPrice += 5 * input.pricePerDay * rentTime / 10;
+        }
+        else if(rentTime > 4){
+          rentPrice += 7 * input.pricePerDay * rentTime / 10;
+        }
+        else if(rentTime > 1){
+          rentPrice += 9 * input.pricePerDay * rentTime / 10;
+        }
+        else{
+          rentPrice += input.pricePerDay * rentTime;
+        }
+        entry.price = rentPrice;
+        //console.log(input.pricePerKm + " *  " + entry.distance + " + " + input.pricePerDay + " * " + rentTime);
+      }
+    });
+    entry.commission.insurance = 15 * rentPrice / 100;
+    entry.commission.assistance = rentTime;
+    entry.commission.drivy = entry.commission.insurance - entry.commission.assistance;
   });
 }
 
