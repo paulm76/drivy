@@ -278,6 +278,15 @@ function Ex5(){
   });
 }
 
+function Ex6(){
+  Ex4();
+  rentals.forEach(function(entry){
+    rentalModifications.forEach(function(input){
+
+    });
+  });
+}
+
 console.log(cars);
 console.log(rentals);
 console.log(actors);
